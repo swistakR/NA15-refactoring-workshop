@@ -19,6 +19,7 @@ public:
     Position nextHead() const;
     Position removeTail();
     void updateDirection(Direction newDirection);
+    unsigned size() const;
 private:
     Direction m_headDirection;
     std::list<Position> m_segments;

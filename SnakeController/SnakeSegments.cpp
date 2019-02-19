@@ -74,4 +74,9 @@ void Segments::updateDirection(Direction newDirection)
     }
 }
 
+unsigned Segments::size() const
+{
+    return m_segments.size();
+}
+
 } // namespace Snake

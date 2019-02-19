@@ -153,7 +153,8 @@ void Controller::addHeadSegment(Position position)
 void Controller::removeTailSegmentIfNotScored(Position position)
 {
     if (position == m_world->getFoodPosition()) {
-        m_scorePort.send(std::make_unique<EventT<ScoreInd>>());
+        ScoreInd scoreIndication{m_segments->size() - 1};
+        m_scorePort.send(std::make_unique<EventT<ScoreInd>>(scoreIndication));
         m_foodPort.send(std::make_unique<EventT<FoodReq>>());
     } else {
         removeTailSegment();
