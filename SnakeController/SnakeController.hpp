@@ -31,7 +31,10 @@ public:
     Controller& operator=(Controller const& p_rhs) = delete;
 
     void receive(std::unique_ptr<Event> e) override;
-
+    void direction(char d);
+    void constructorIf(std::string const& p_config);
+    void functionIF2(bool requestedFoodCollidedWithSnake, int a,int b);
+    bool autoChoose(int x, int y);
 private:
     struct Segment
     {
@@ -39,11 +42,14 @@ private:
         int y;
         int ttl;
     };
-
+    void functionIF2(Segment newHead);
+    void functionIF(Segment newHead);
+    //void if1(Segment newHead);
+    void segmentttl(Segment &segment);
     IPort& m_displayPort;
     IPort& m_foodPort;
     IPort& m_scorePort;
-
+    bool lost = false;
     std::pair<int, int> m_mapDimension;
     std::pair<int, int> m_foodPosition;
 
