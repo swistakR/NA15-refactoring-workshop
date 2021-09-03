@@ -36,6 +36,7 @@ Segments::Segments(Direction direction)
 void Segments::addSegment(Position position)
 {
     m_segments.emplace_back(position);
+    currentsize = size();
 }
 
 bool Segments::isCollision(Position position) const
@@ -47,6 +48,7 @@ bool Segments::isCollision(Position position) const
 void Segments::addHead(Position position)
 {
     m_segments.push_front(position);
+    currentsize = size();
 }
 
 Position Segments::removeTail()
