@@ -1,22 +1,22 @@
 #pragma once
 
 #include <utility>
-
+#include "SnakeInterface.hpp"
 namespace Snake
 {
 
 class World
 {
 public:
-    World(std::pair<int, int> dimension, std::pair<int, int> food);
+    World(std::pair<int, int> dimension, Position p);
 
-    void setFoodPosition(std::pair<int, int> position);
-    std::pair<int, int> getFoodPosition() const;
+    void setFoodPosition(Position p);
+    Position getFoodPosition() const;
 
-    bool contains(int x, int y) const;
+    bool contains(Position p) const;
 
 private:
-    std::pair<int, int> m_foodPosition;
+    Position m_foodPosition;
     std::pair<int, int> m_dimension;
 };
 

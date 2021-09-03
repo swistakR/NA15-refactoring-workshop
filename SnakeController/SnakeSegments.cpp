@@ -33,20 +33,20 @@ Segments::Segments(Direction direction)
     : m_headDirection(direction)
 {}
 
-void Segments::addSegment(int x, int y)
+void Segments::addSegment(Position p)
 {
-    m_segments.emplace_back(Position{x, y});
+    m_segments.emplace_back(p);
 }
 
-bool Segments::isCollision(int x, int y) const
+bool Segments::isCollision(Position p) const
 {
     return m_segments.end() !=  std::find_if(m_segments.cbegin(), m_segments.cend(),
-        [x, y](auto const& segment){ return segment.x == x and segment.y == y; });
+        [p](auto const& segment){ return segment.x == x and segment.y == y; });
 }
 
-void Segments::addHead(int x, int y)
+void Segments::addHead(Position p)
 {
-    m_segments.push_front(Position{x, y});
+    m_segments.push_front(p);
 }
 
 std::pair<int, int> Segments::removeTail()
@@ -56,7 +56,7 @@ std::pair<int, int> Segments::removeTail()
     return std::make_pair(tail.x, tail.y);
 }
 
-std::pair<int, int> Segments::nextHead() const
+Position Segments::nextHead() const
 {
     Position const& currentHead = m_segments.front();
 
@@ -64,7 +64,7 @@ std::pair<int, int> Segments::nextHead() const
     newHead.x = currentHead.x + (isHorizontal(m_headDirection) ? isPositive(m_headDirection) ? 1 : -1 : 0);
     newHead.y = currentHead.y + (isVertical(m_headDirection) ? isPositive(m_headDirection) ? 1 : -1 : 0);
 
-    return std::make_pair(newHead.x, newHead.y);
+    return newHead;
 }
 
 void Segments::updateDirection(Direction newDirection)

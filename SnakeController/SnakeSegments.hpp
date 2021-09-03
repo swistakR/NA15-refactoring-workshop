@@ -9,17 +9,13 @@ namespace Snake
 
 class Segments
 {
-    struct Position
-    {
-        int x, y;
-    };
 public:
     Segments(Direction direction);
 
-    void addSegment(int x, int y);
-    bool isCollision(int x, int y) const;
-    void addHead(int x, int y);
-    std::pair<int, int> nextHead() const;
+    void addSegment(Position p);
+    bool isCollision(Position p) const;
+    void addHead(Position p);
+    Position nextHead() const;
     std::pair<int, int> removeTail();
     void updateDirection(Direction newDirection);
 private:
